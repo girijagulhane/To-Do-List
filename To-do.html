@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To do list</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1 align="center">To Do List</h1> 
+            <hr>
+            <label for="">Task:</label><br>
+            <input type="text" id="task"><br>
+            <button class="taskbtn" onclick="addTask()">Add Task</button>
+            <h4>Task to complete</h4>
+            <ul class="tasklist">
+
+            </ul>
+        </div>
+    </body>
+    <Style>
+        body{
+            display: flex;
+            justify-content: center;
+            height: 95vh;
+        }
+        .container{
+            border: solid 1px gray;
+            border-radius: 10px;
+            min-width: 300px;
+            padding: 10px;
+        }
+        input{
+            width: 92%;
+            padding: 10px;
+        }
+        .taskbtn{
+            color: white;
+            margin-top: 10px;
+            width: 100%;
+            padding: 5px;
+            background-color: tomato;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px 1px red;
+            border: none;
+        }
+        ul{
+            padding: 0px;
+        }
+        li{
+            border: solid 2px lime;
+            border-radius: 10px;
+            padding: 5px;
+            margin-top: 5px;
+        }
+    </Style>
+</html>
+<script>
+    const input=document.getElementById('task')
+    const ul=document.querySelector('.tasklist')
+    let c=0;
+    function markcomplete(id){
+        id.style.textDecoration='line-through'
+    }
+    function DeleteTask(id){
+        ul.removeChild(id)
+    }
+    function addTask(){
+        let task=input.value;
+        if(task=="")
+            alert("Please Enter Task...")
+        else{
+        let li=document.createElement('li');
+        li.style.display='flex'
+        li.id=`Li${c}`
+        li.style.justifyContent='space-between'
+        li.innerHTML=`<div id='t${c}'>${task}</div>
+        <div>
+            <button onclick=markcomplete(t${c})>✅</button>
+            <button onclick=DeleteTask(Li${c})>🗑️</button>
+        </div>`
+        ul.appendChild(li);
+        c++;
+        }
+    }
+</script>
